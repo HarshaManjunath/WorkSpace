@@ -1,22 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore' 
+import React from "react";
+import ReactDOM from "react-dom";
+import Core from "./containers/Core";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import configureStore from "./store/configureStore";
+import "./index.css";
 
-const store = configureStore()
-
-store.subscribe(() => {
-    console.log(store.getState())
-})
+const store = configureStore();
 
 const todoProvider = (
-    <Provider store = {store}>
-        <App />
-    </Provider>
-)
+  <Provider store={store}>
+    <Core />
+  </Provider>
+);
 
-ReactDOM.render(todoProvider, document.getElementById('root'));
+ReactDOM.render(todoProvider, document.getElementById("root"));
 
 serviceWorker.unregister();

@@ -1,0 +1,16 @@
+@import "~antd/dist/antd.css";
+
+.ant-table-thead tr th:nth-child(1) {
+  width: 500px;
+}
+
+.ant-picker-input input {
+  margin: 0px !important;
+}
+
+.ant-input {
+  margin: 0px !important;
+}
+.input[type="date"]:not(.browser-default) {
+  margin: 0px;
+}

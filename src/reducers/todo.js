@@ -1,33 +1,26 @@
 const initialState = {
-    tasks: [],
-    loading: false
-}
+  tasks: [],
+};
 
 const todoReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'ADD_TASK':
-            return {
-                tasks: [ ...state.tasks, action.payload ]
-            }
-        case 'DELETE_TASK': 
-            let tasks = state.tasks.filter(task => {
-                return task.id !== action.payload
-            })
-            return {
-                tasks
-            }
-        case 'LOADING': 
-            return {
-                ...state, loading: action.payload
-            }
-        case 'LOAD_DATA':
-            return {
-                ...state, tasks: [...action.payload]
-            }
-        default: 
-            return state
-    }
-}
+  switch (action.type) {
+    case "ADD_TASK":
+      return {
+        tasks: [...state.tasks, action.payload],
+      };
+    case "ADD_SUB_TASK":
+      const { payload } = action;
+      const stateClone = [...state.tasks];
+      const activeTask = stateClone.find(
+        (item) => item.id === payload.activeTaskId
+      );
+      activeTask["subTasks"] = [...activeTask.subTasks, { ...payload.data }];
+      return {
+        tasks: stateClone,
+      };
+    default:
+      return state;
+  }
+};
 
 export default todoReducer;
-
